@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>French with Titi | Registration & Fees</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f0eb;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding: 1rem 0.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #2e241f;
+    }
+
+    .forum-container {
+      max-width: 950px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(180, 140, 110, 0.2);
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #3a2c24;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    h1 span {
+      background: #b8926a;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+    }
+
+    .subhead {
+      font-size: 0.95rem;
+      color: #6b5b4f;
+      margin-bottom: 1.8rem;
+      border-left: 4px solid #b8926a;
+      padding-left: 1rem;
+      font-style: italic;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a3729;
+      margin: 1.8rem 0 0.4rem 0; /* reduced bottom margin */
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px dashed #e2d4c4;
+      padding-bottom: 0.5rem;
+    }
+
+    /* Table wrapper with scroll indicator */
+    .table-scroll-container {
+      position: relative;
+      overflow-x: auto;
+      border-radius: 1rem;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0 0.25rem 0;
+    }
+
+    .table-scroll-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(253,250,247,0.9));
+      pointer-events: none;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    @media (max-width: 700px) {
+      .table-scroll-container::after {
+        opacity: 1;
+      }
+    }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fdfaf7;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      font-size: 0.85rem;
+      min-width: 650px;
+      white-space: nowrap;
+    }
+
+    .price-table th {
+      background: #d9c2ad;
+      color: #2e241f;
+      font-weight: 600;
+      padding: 0.8rem 0.6rem;
+      text-align: left;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .price-table td {
+      padding: 0.8rem 0.6rem;
+      border-bottom: 1px solid #f0e3d6;
+      vertical-align: middle;
+    }
+
+    .price-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .price-table .pathway {
+      font-weight: 600;
+      color: #5e3e2b;
+    }
+
+    .price-amount {
+      font-weight: 700;
+      color: #2d4a3b;
+      background: #eaf4e8;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 0.85rem;
+    }
+
+    /* Large scroll hint */
+    .scroll-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #fdfaf7;
+      border: 1px solid #e2d4c4;
+      padding: 0.8rem 1.2rem;
+      border-radius: 2.5rem;
+      margin-top: 0.6rem;
+      font-weight: 600;
+      color: #5e3e2b;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      animation: bounceHint 2s infinite;
+    }
+
+    .scroll-hint span {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 700px) {
+      .scroll-hint {
+        display: flex;
+      }
+    }
+
+    @keyframes bounceHint {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(5px); }
+      50% { transform: translateX(-5px); }
+      75% { transform: translateX(3px); }
+      100% { transform: translateX(0); }
+    }
+
+    .note-refund {
+      background: #fff3e6;
+      border-left: 5px solid #c97e4a;
+      padding: 1rem 1.2rem;
+      border-radius: 0.9rem;
+      margin: 1.5rem 0;
+      font-weight: 500;
+      color: #5b3c28;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .bank-details {
+      background: #f4efe9;
+      border-radius: 1rem;
+      padding: 1.2rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1.2rem 0 1.8rem;
+      border: 1px solid #dacbbc;
+      gap: 1rem;
+    }
+
+    .bank-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .bank-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bank-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #7b6b5d;
+      font-weight: 600;
+    }
+
+    .bank-value {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #2e241f;
+      background: white;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      margin-top: 0.2rem;
+      border: 1px solid #dacbbc;
+    }
+
+    .rules-box {
+      background: #f9f7f4;
+      border-radius: 1rem;
+      padding: 1.2rem 1.2rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #e2d4c4;
+    }
+
+    .rules-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .rules-box li {
+      padding: 0.6rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      border-bottom: 1px solid #ede3d6;
+      color: #4a3a2e;
+      font-size: 0.9rem;
+    }
+
+    .rules-box li:last-child {
+      border-bottom: none;
+    }
+
+    .rule-icon {
+      color: #b8926a;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* Ultra-compact form spacing */
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;  /* almost no vertical gap between rows */
+      margin-top: 0;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;  /* tight horizontal gap */
+      margin-bottom: 0;
+    }
+
+    .form-group {
+      flex: 1 1 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0; /* no gap between label and input */
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #5b4a3b;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 0.1rem;
+      line-height: 1.2;
+    }
+
+    input, select, .readonly-field {
+      padding: 0.5rem 0.8rem; /* even smaller padding */
+      border: 1px solid #d6c6b6;
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      background: #fffdf9;
+      transition: all 0.2s;
+      font-family: inherit;
+      color: #2e241f;
+      width: 100%;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #b8926a;
+      box-shadow: 0 0 0 3px rgba(184, 146, 106, 0.2);
+      background: white;
+    }
+
+    .readonly-field {
+      background: #f4ede5;
+      color: #3f3328;
+      font-weight: 500;
+      cursor: default;
+      border: 1px solid #ddd0c0;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin: 0.1rem 0 0.1rem 0;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 1.3rem;
+      height: 1.3rem;
+      accent-color: #b8926a;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .checkbox-group label {
+      text-transform: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #3b2e24;
+      letter-spacing: normal;
+      cursor: pointer;
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+
+    button {
+      background: #7d5e45;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.7rem 2rem;
+      border-radius: 3rem;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.1s;
+      align-self: flex-start;
+      margin-top: 0.05rem;
+      box-shadow: 0 6px 14px rgba(125, 94, 69, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      width: auto;
+    }
+
+    button:hover {
+      background: #5e4332;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .disclaimer {
+      font-size: 0.9rem;
+      color: #8b7a6b;
+      margin-top: 0.1rem;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0.5rem;
+      }
+
+      .forum-container {
+        padding: 1.5rem 1rem;
+        border-radius: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .bank-details {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .bank-info {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .checkbox-group {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="forum-container">
+    <h1>
+      🇫🇷 French with Titi
+      <span>Inscription</span>
+    </h1>
+    <div class="subhead">
+      Complete your registration – review fees, rules & payment details
+    </div>
+
+    <!-- Price List Section with large scroll indicator -->
+    <div class="section-title">
+      <span>📋</span> Programme & Price List
+    </div>
+    <div class="table-scroll-container">
+      <table class="price-table">
+        <thead>
+           <tr>
+              <th>Course Pathway</th>
+              <th>Target Level</th>
+              <th>Duration</th>
+              <th>Frequency</th>
+              <th>Final Exam</th>
+              <th>Price Structure</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr>
+              <td class="pathway">Beginner Pathway</td>
+              <td>A1 → A2</td>
+              <td>3 Months</td>
+              <td>3x / Week</td>
+              <td>DELF A1/A2</td>
+              <td><span class="price-amount">₦234,000</span><br><small>(full 3-month program)</small></td>
+           </tr>
+           <tr>
+              <td class="pathway">Intermediate Pathway</td>
+              <td>B1 → B2</td>
+              <td>6 Months</td>
+              <td>3x / Week</td>
+              <td>DELF B1/B2</td>
+              <td><span class="price-amount">₦255,000</span><br><small>(per 3-month term)</small></td>
+           </tr>
+           <tr>
+              <td class="pathway">Advanced Pathway</td>
+              <td>C1 → C2</td>
+              <td>9 Months</td>
+              <td>3x / Week</td>
+              <td>TCF / TEF</td>
+              <td><span class="price-amount">₦270,000</span><br><small>(per 3-month term)</small></td>
+           </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="scroll-hint">
+      <span>👈</span> Swipe to see full price list <span>👉</span>
+    </div>
+
+    <div class="note-refund">
+      <span style="font-size:1.4rem;">⚠️</span>
+      <span><strong>NOTE:</strong> Please note that all payments are final and non-refundable. Thank you for your understanding!</span>
+    </div>
+
+    <!-- Bank Account Details -->
+    <div class="section-title">
+      <span>🏦</span> Payment Details
+    </div>
+    <div class="bank-details">
+      <div style="font-weight:600; color:#4a3729;">Please transfer the course fee to:</div>
+      <div class="bank-info">
+        <div class="bank-item">
+          <span class="bank-label">Bank</span>
+          <span class="bank-value">Fidelity Bank</span>
+        </div>
+        <div class="bank-item">
+          <span class="bank-label">Account Number</span>
+          <span class="bank-value">6016152451</span>
+        </div>
+        <div class="bank-item">
+          <span class="bank-label">Account Name</span>
+          <span class="bank-value">Nefertiti Eyongetah</span>
+        </div>
+      </div>
+      <div style="font-size:0.8rem; color:#6b5b4f; margin-top:0.5rem; width:100%;">
+        * Use student's full name as payment reference.
+      </div>
+    </div>
+
+    <!-- Rules & Regulations -->
+    <div class="section-title">
+      <span>📜</span> Rules & Regulations
+    </div>
+    <div class="rules-box">
+      <ul>
+        <li>
+          <span class="rule-icon">✓</span>
+          <span><strong>Timetable Commitment:</strong> Once a timetable slot is selected, it is fixed and cannot be changed. We do not alter timetables after confirmation.</span>
+        </li>
+        <li>
+          <span class="rule-icon">✓</span>
+          <span><strong>Small Group Learning:</strong> All classes are conducted in intimate groups of 5 persons only, ensuring quality attention.</span>
+        </li>
+        <li>
+          <span class="rule-icon">✓</span>
+          <span><strong>Non-refundable Payment:</strong> All payments are final and non-refundable, as stated above.</span>
+        </li>
+        <li>
+          <span class="rule-icon">✓</span>
+          <span><strong>Exam Progression Policy:</strong> A student must obtain a minimum of 50% on the final exam to progress to the next level. Failure to achieve this will result in repeating that level.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Registration Form (extremely tight spacing) -->
+    <div class="section-title">
+      <span>📝</span> Student Registration
+    </div>
+    <form id="registrationForm" onsubmit="handleSubmit(event)">
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g., Amara Okafor" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="amara@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="coursePathway">Select Course Pathway *</label>
+            <select id="coursePathway" name="coursePathway" required onchange="updateLevels()">
+              <option value="" disabled selected>– Choose a programme –</option>
+              <option value="beginner">Beginner Pathway (A1 → A2)</option>
+              <option value="intermediate">Intermediate Pathway (B1 → B2)</option>
+              <option value="advanced">Advanced Pathway (C1 → C2)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tefTcfOption">TEF / TCF Preparation</label>
+            <select id="tefTcfOption" name="tefTcfOption">
+              <option value="none" selected>None (general pathway only)</option>
+              <option value="tef">TEF Exam Preparation</option>
+              <option value="tcf">TCF Exam Preparation</option>
+            </select>
+            <small style="color:#6b5b4f; margin-top:0.1rem; font-size:0.75rem;">Select if also preparing for relocation exam (pricing on request).</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="startingLevel">Starting Level</label>
+            <input type="text" id="startingLevel" name="startingLevel" class="readonly-field" readonly placeholder="Auto-filled from pathway">
+          </div>
+          <div class="form-group">
+            <label for="targetLevel">Target Level</label>
+            <input type="text" id="targetLevel" name="targetLevel" class="readonly-field" readonly placeholder="Auto-filled from pathway">
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="agreeRules" name="agreeRules" required>
+          <label for="agreeRules">I have read and agree to the Rules & Regulations. I understand that payments are final, non-refundable, and that my chosen timetable cannot be changed.</label>
+        </div>
+
+        <button type="submit">
+          <span>📨</span> Submit Registration
+        </button>
+        <div class="disclaimer">
+          * After submission, we will contact you to confirm timetable and group placement.
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function updateLevels() {
+      const pathway = document.getElementById('coursePathway').value;
+      const startingLevel = document.getElementById('startingLevel');
+      const targetLevel = document.getElementById('targetLevel');
+
+      const levelMap = {
+        beginner: { start: 'A1', target: 'A2' },
+        intermediate: { start: 'B1', target: 'B2' },
+        advanced: { start: 'C1', target: 'C2' }
+      };
+
+      if (pathway && levelMap[pathway]) {
+        startingLevel.value = levelMap[pathway].start;
+        targetLevel.value = levelMap[pathway].target;
+      } else {
+        startingLevel.value = '';
+        targetLevel.value = '';
+      }
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = document.getElementById('registrationForm');
+      if (!form.checkValidity()) {
+        alert('Please fill all required fields and agree to the rules.');
+        return;
+      }
+
+      const formData = {
+        name: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        pathway: document.getElementById('coursePathway').value,
+        tefTcf: document.getElementById('tefTcfOption').value,
+        startingLevel: document.getElementById('startingLevel').value,
+        targetLevel: document.getElementById('targetLevel').value,
+        agreed: document.getElementById('agreeRules').checked
+      };
+
+      console.log('Registration data:', formData);
+      alert(`Merci ${formData.name} ! Your registration for ${formData.pathway}${formData.tefTcf !== 'none' ? ' with ' + formData.tefTcf.toUpperCase() + ' prep' : ''} has been received.\nWe will contact you at ${formData.email}.`);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateLevels();
+    });
+  </script>
+</body>
+</html>
